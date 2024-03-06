@@ -9,7 +9,6 @@ import QuickFilter from '../components/QuickFilter';
 import BookCardSkeletion from '../components/skeletons/BookCardSkeletion';
 import Alternate from '../components/Layout/HomeLay';
 import { getNotes, searchNote, getBookMarkedNotes } from '../redux/notes/noteActions';
-import MyCalendar from '../components/Calender/AdvancedCalender';
 const Home = () => {
   const dispatch = useDispatch();
   const notes = useSelector((state) => state?.note?.notes);
@@ -56,7 +55,6 @@ const Home = () => {
               filter === 'BookMarked' ? <h1 className='text-black text-center text-2xl mb-10'>BookMarked Notes </h1> : null
             }
           </div>
-          <MyCalendar />
           <motion.div className='flex flex-wrap justify-center'
             initial='hidden'
             whileInView={'show'}

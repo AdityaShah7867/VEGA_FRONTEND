@@ -36,7 +36,9 @@ import GameHomePage from './pages/GameHomePage';
 import GamePage from './pages/GamePage';
 import GameList from './pages/GameList';
 import Quiz from './pages/Quiz';
-
+import UserHome from './pages/UserHome';
+import PatDash from './pages/PatDash';
+import MyEvents from './pages/MyEvents';
 
 
 const App = () => {
@@ -114,7 +116,7 @@ const App = () => {
               <Route path="/setting" element={<Setting />} />
               <Route path="/YourNotes" element={<YourNotes />} />
               <Route path="/todo" element={<Notification />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/notes" element={<Home />} />
               <Route path="/notes" element={<NotesTable />} />
               <Route path="/room/:roomId" element={<Room />} />
               <Route path="/video" element={<Video />} />
@@ -127,8 +129,10 @@ const App = () => {
               <Route path='/books' element={<GetBooks />} />
               <Route path='/gameslist' element={<GameList />} />
               <Route path="/profile/:username" element={<Profile />} />
-
-
+              <Route path="/ai" element={<Ai />} />
+              <Route path="/home" element={<UserHome />} />
+              <Route path="/patdash" element={<PatDash />} />
+              <Route path="/myevents" element={<MyEvents />} />
 
             </Route>
 
