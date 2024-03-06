@@ -9,7 +9,7 @@ import QuickFilter from '../components/QuickFilter';
 import BookCardSkeletion from '../components/skeletons/BookCardSkeletion';
 import Alternate from '../components/Layout/HomeLay';
 import { getNotes, searchNote, getBookMarkedNotes } from '../redux/notes/noteActions';
-
+import {AdvanceCalender} from '../components/Calender/AdvancedCalender'
 const Home = () => {
   const dispatch = useDispatch();
   const notes = useSelector((state) => state?.note?.notes);

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Alternates from "../components/Layout/Setting";
-import { motion } from 'framer-motion';
-import { fadeIn } from '../Variants';
-import { getTodosByUserId, createTodo, updateTodo, deleteTodo } from "../redux/todo/todoActions";
-import { useSelector, useDispatch } from 'react-redux';
+import Alternates from "../components/Layout/Toodoo";
+import { useDispatch, useSelector } from "react-redux";
+import { createTodo, updateTodo, getTodosByUserId, deleteTodo } from "../redux/todo/todoActions";
 import { fetchImpDates } from "../redux/impDates/impDateActions";
 import ImpDatesCard from "../components/ImpDatesCard";
+import { SlCalender } from "react-icons/sl";
 
 const Notification = () => {
   const dispatch = useDispatch();
@@ -18,12 +17,10 @@ const Notification = () => {
     setNewTask(event.target.value);
   };
 
-  const handleAddTask = async (e) => {
-    e.preventDefault();
+  const handleAddTask = async () => {
     await dispatch(createTodo({
       title: newTask,
     }));
-
     setNewTask("");
     await dispatch(getTodosByUserId());
   };
@@ -40,92 +37,47 @@ const Notification = () => {
 
   return (
     <Alternates>
-      <div className="mt-9 "></div>
-      <div className="flex flex-col md:flex-row min-h-screen">
+      <div className="mt-16 text-3xl">To-DO</div>
+      <div>
+        <hr />
+      </div>
+      <div className="mt-4">
+        <div className="flex flex-wrap">
+          <input
+            type="text"
+            value={newTask}
+            onChange={handleNewTaskChange}
+            className="rounded-md px-3 py-2 min-w-96 mx-2 border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
+            placeholder="Enter new task"
+          />
+          <button
+            onClick={handleAddTask}
+            className="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg
+            border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px]
+            active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+          >
+            Add New Task
+          </button>
+        </div>
+      </div>
 
-
-
-        <motion.div className="flex flex-col-reverse mt-9 justify-end"
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn('right', 0.3)}>
-          {impDates?.length === 0 && <h1 className="text-2xl mt-3 text-red-500">No Important Dates Found</h1>}
-
-
-          {impDates?.map((imp) => (
-
-            <ImpDatesCard imp={imp} />
-
-          ))}
-          <h1 className="text-3xl font-bold mb-4 ml-4">Important Dates</h1>
-        </motion.div>
-
-        <motion.div className="xl:w-2/4 border-2 mx-auto mt-9"
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn('left', 0.3)}>
-          <div className="container border-2 bg-white rounded-xl overflow-hidden shadow-lg mx-auto p-4 text-center">
-            <h1 className="text-3xl font-bold mb-4">My To-Do List</h1>
-            <form onSubmit={handleAddTask}>
-              <div className="flex space-x-2 mb-4">
-                <input
-                  id="task"
-                  className="flex-1 border rounded py-2 px-3"
-                  type="text"
-                  placeholder="Add a new task..."
-                  onChange={handleNewTaskChange}
-                />
-                <button
-                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-                  type="submit"
-                >
-                  <i class="bi bi-calendar-plus mr-1"></i>
-                  Add
-                </button>
-              </div>
-            </form>
-            <ul id="taskList">
-              {todos?.length === 0 && <h1 className="text-2xl text-red-500">No Task Found</h1>}
-
-              {todos?.length !== 0 && Array.isArray(todos) && todos?.map((task, index) => (
-                <li key={index} className="flex items-center justify-between border-b border-gray-300 py-2">
-                  <div className="flex items-center space-x-2 w-4/5">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox"
-                      id={`complete-${index}`}
-                      checked={task.completed}
-                      onClick={() => { handleUpdate(task._id); }}
-                    />
-                    <div className="text-left">
-                      <label
-                        htmlFor={`complete-${index}`}
-                        className={task.completed ? "line-through text-lg text-green-500" : "text-lg"}
-                      >
-                        {task.title}
-                      </label>
-                      <h1>{new Date(task.createdAt).toLocaleTimeString()}</h1>
-                    </div>
-                  </div>
-                  <div>
-                    <button
-                      className="text-white border-2 bg-red-500 rounded-md border-red-500 p-1 ml-1 hover:bg-red-600"
-                      onClick={async () => {
-                        await dispatch(deleteTodo(task?._id));
-                        await dispatch(getTodosByUserId());
-                      }}
-                    >
-                      <i class="bi bi-trash mr-1"></i>
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
+      <div className="mt-8">
+        {Array.isArray(todos) && todos?.map((task) => (
+          <div key={task?._id} className="p-2 m-2 bg-white border rounded-lg max-w-6xl border-gray-300 shadow-sm">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={task?.completed}
+                onChange={() => handleUpdate(task?._id)}
+              />
+              <span className="mx-4 font-semibold">{task?.title}</span>
+            </div>
+            <div className="ml-12 mt-2 flex items-center">
+              <SlCalender className="mt-1 mr-2"/>
+              {new Date(task?.createdAt).toLocaleTimeString()}
+            </div>
           </div>
-        </motion.div>
+        ))}
       </div>
     </Alternates>
   );

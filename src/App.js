@@ -12,13 +12,11 @@ import NotesForm from './pages/NotesForm';
 import OtpForm from './pages/OtpForm';
 import Communitychat from './pages/Communitychat';
 import Navbar from './components/Navbar';
-
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogedinUser } from './redux/auth/authActions';
 import Profile from './pages/Profile';
 import Landing from './pages/Landing';
-
 import NotesTable from './pages/AdminPanel'
 import SideBar from './components/Sidebar/Sidebar';
 import Room from './pages/Room';
@@ -37,6 +35,7 @@ import Chatbot from './components/AiBot/ChatBot';
 import GameHomePage from './pages/GameHomePage';
 import GamePage from './pages/GamePage';
 import GameList from './pages/GameList';
+import Quiz from './pages/Quiz';
 
 
 
@@ -85,10 +84,10 @@ const App = () => {
 
       <Router>
         <ToastContainer />
-        {
+        {/* {
           user ?
             <Chatbot /> : null
-        }
+        } */}
 
         <div >
           <Routes>
@@ -102,6 +101,7 @@ const App = () => {
               element={
                 <>
                   <div className="flex">
+                    <Chatbot />
                     <SideBar />
                     <div className="flex-grow">
                       <PrivateRoutes />
@@ -113,7 +113,7 @@ const App = () => {
 
               <Route path="/setting" element={<Setting />} />
               <Route path="/YourNotes" element={<YourNotes />} />
-              <Route path="/notification" element={<Notification />} />
+              <Route path="/todo" element={<Notification />} />
               <Route path="/home" element={<Home />} />
               <Route path="/notes" element={<NotesTable />} />
               <Route path="/room/:roomId" element={<Room />} />
@@ -127,7 +127,6 @@ const App = () => {
               <Route path='/books' element={<GetBooks />} />
               <Route path='/gameslist' element={<GameList />} />
               <Route path="/profile/:username" element={<Profile />} />
-
 
 
 
@@ -150,6 +149,7 @@ const App = () => {
               }
             >
               <Route path="/nviewer/:noteId" element={<Nviewer />} />
+              <Route path="/quiz" element={<Quiz />} />
 
               <Route path='/game' element={<GameHomePage />} />
               <Route path="/room/:username/:roomCode" element={<GamePage />} />

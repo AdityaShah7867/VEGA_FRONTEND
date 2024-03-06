@@ -110,14 +110,14 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={"/notification"}>
+          <NavLink to={"/todo"}>
             <div
               className={`p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 ${location.pathname === "/notification" ? "bg-blue-500" : ""
                 }`}
             >
               <i className="bi bi-bell text-white"></i>
               <span className="text-[15px] ml-4 font-bold text-gray-200">
-                Important Dates
+                My List
               </span>
             </div>
           </NavLink>
@@ -146,17 +146,7 @@ export const SideBar = () => {
             </div>
           </NavLink>
 
-          <NavLink to={"/video"}>
-            <div
-              className={`p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 ${location.pathname === "/video" ? "bg-blue-500" : ""
-                }`}
-            >
-              <i className="bi bi-camera-video text-white"></i>
-              <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Video Room
-              </span>
-            </div>
-          </NavLink>
+          
 
           <NavLink to={"/books"}>
             <div
@@ -169,17 +159,7 @@ export const SideBar = () => {
               </span>
             </div>
           </NavLink>
-          <NavLink to={"/gameslist"}>
-            <div
-              className={`p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 ${location.pathname === "/games" ? "bg-blue-500" : ""
-                }`}
-            >
-             <i class="bi bi-joystick text-white"></i>
-              <span className="text-[15px] ml-4 text-gray-200 font-bold">
-                Games
-              </span>
-            </div>
-          </NavLink>
+          
 
           <NavLink to={"/dashboard"}>
             <div
