@@ -36,6 +36,7 @@ import GameHomePage from './pages/GameHomePage';
 import GamePage from './pages/GamePage';
 import GameList from './pages/GameList';
 import Quiz from './pages/Quiz';
+import Forum from './pages/Forum';
 
 
 
@@ -127,6 +128,7 @@ const App = () => {
               <Route path='/books' element={<GetBooks />} />
               <Route path='/gameslist' element={<GameList />} />
               <Route path="/profile/:username" element={<Profile />} />
+              <Route path='/forum' element={<Forum/>}/>
 
 
 
